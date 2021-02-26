@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
   clear(); 
   refresh();
   endwin();
+
   printf("Thanks for playing.\n");
   exit(0);
 }
