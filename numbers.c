@@ -4,29 +4,31 @@
 #include <time.h>
 
 #define LEN 40  // max length of the number list
-#define SPEED 3 // between 1 and 10
+#define SPEED 5 // between 1 and 10
 
 #define INCREASE 'x'
 #define DECREASE 'z'
+#define QUIT     'q'
 #define KILL     ' '
 
-char ch, line[LEN+2];
+char ch;
 unsigned int score = 0;
 unsigned short buffer[LEN], N=0, c=0;
 
 void draw(void) {
     int i;
-
-    for(i=0; i<N; i++)
-      line[i] = '0' + buffer[i];
-    line[N] = '\0';
-    
     clear(); 
     refresh();
-    printw("Score: %d\n%c %40s\n", score, c+'0', line);
-    printw("\n'%c' to increase, '%c' to decrease.\n",INCREASE,DECREASE);
-    printw("Space to kill the first occurance of the number within the list.\n");
-    printw("'q' ends the game.\n");
+    printw("Score: %d\n", score);
+    for(i=0;i<LEN+1;i++) printw("-"); printw("\n");
+    printw("%c ", c+'0');
+    for(i=0;i<LEN-N-1;i++) printw(" "); 
+    for(i=0;i<N;i++) printw("%c",buffer[i]+'0'); printw("\n");
+    for(i=0;i<LEN+1;i++) printw("-"); printw("\n");
+    printw("Space to kill the 1st instance of the number in the list.\n");
+    printw("'%c' to increase, ", INCREASE);
+    printw("'%c' to decrease, ", DECREASE);
+    printw("'%c' ends the game.\n", QUIT);
     endwin();
 }
 
