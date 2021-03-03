@@ -31,6 +31,7 @@ void draw(void) {
 
 void loop(void) {
   int j;
+
   do {
     if(N == 0 || (rand()%10)<SPEED)
       buffer[N++] = rand()%10;
