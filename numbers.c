@@ -15,6 +15,8 @@ unsigned int score = 0;
 unsigned short buffer[LEN], N=0, c=0;
 
 void draw(void) {
+    int i;
+
     for(i=0; i<N; i++)
       line[i] = '0' + buffer[i];
     line[N] = '\0';
