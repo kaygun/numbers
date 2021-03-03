@@ -24,12 +24,13 @@ void draw(void) {
     refresh();
     printw("Score: %d\n%c %40s\n", score, c+'0', line);
     printw("\n'%c' to increase, '%c' to decrease.\n",INCREASE,DECREASE);
-    printw("Space to kill the number at the beginning of the list.\n");
+    printw("Space to kill the first occurance of the number within the list.\n");
     printw("'q' ends the game.\n");
     endwin();
 }
 
 void loop(void) {
+  int j;
   do {
     if(N == 0 || (rand()%10)<SPEED)
       buffer[N++] = rand()%10;
@@ -40,12 +41,14 @@ void loop(void) {
     switch(ch) {
       case INCREASE: c = (c+1)%10; break;
       case DECREASE: if(c>0) c--; else c=9; break;
-      case KILL    : if(buffer[0] == c && N > 0 ) {
-			score += 1;
-			for(i=0; i<N; i++) 
-			   buffer[i] = buffer[i+1];
-			buffer[N]=0;
-			N--;
+      case KILL    : for(j=0; j<N; j++) {
+			if(buffer[j] == c) { 
+			  score += 1;
+			  for(i=j; i<N; i++) 
+			     buffer[i] = buffer[i+1];
+			  buffer[N]=0;
+			  j=N--;
+			}
 		     }; break;
       default      : break;
     }
