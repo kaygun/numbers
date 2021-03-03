@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include <time.h>
-#include <math.h>
 
 #define LEN 40  // max length of the number list
 #define SPEED 3 // between 1 and 10
@@ -13,7 +12,7 @@
 
 char ch, line[LEN+2];
 unsigned int score = 0;
-unsigned short buffer[LEN], i, N=0, c=0;
+unsigned short buffer[LEN], N=0, c=0;
 
 void draw(void) {
     for(i=0; i<N; i++)
@@ -30,7 +29,7 @@ void draw(void) {
 }
 
 void loop(void) {
-  int j;
+  int i,j;
 
   do {
     if(N == 0 || (rand()%10)<SPEED)
