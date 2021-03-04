@@ -45,14 +45,12 @@ void loop(void) {
     switch(ch) {
       case INCREASE: c = (c+1)%10; break;
       case DECREASE: if(c>0) c--; else c=9; break;
-      case KILL    : for(j=0; j<N; j++) {
-			if(buffer[j] == c) { 
-			  score += 1;
-			  for(i=j; i<N; i++) 
-			     buffer[i] = buffer[i+1];
-			  buffer[N]=0;
-			  j=N--;
-			}
+      case KILL    : for(j=0; j<N && buffer[j]!=c; j++);
+		     if(j<N) { 
+		       score += 1;
+		       for(i=j; i<N; i++) 
+		          buffer[i] = buffer[i+1];
+		       buffer[N--]=0;
 		     }; break;
       default      : break;
     }
