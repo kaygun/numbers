@@ -4,10 +4,10 @@ it had a very simple game on it.  This is my *approximation* of the game. I thin
 short and simple enough that anyone can make modifications to make it more playable. Do 
 whatever you may want to it, as long as give credit to the original game and this version. Enjoy!
 
-I wrote this on my linux box. You will need a C compiler and the [ncurses][2] library to
+I wrote this on my linux box. You will need a C++ compiler and the [ncurses][2] library to
 compile.  Use
 
-    gcc -o numbers numbers.c -lncurses
+    g++ -o numbers numbers.c -lncurses
 
 to compile. The defaul configuration is that 'z' decreases, 'x' increases and space cancels.
 Use 'q' to quit the game.
