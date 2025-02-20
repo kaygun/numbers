@@ -34,7 +34,10 @@ private:
 
 public:
     Game() 
-        : userInput(0), score(0), currentNumber(0), rng(std::random_device{}()),
+        : userInput(0),
+	  score(0),
+	  currentNumber(0),
+	  rng(std::random_device{}()),
           numberDist(0, 9) {
         srand(time(nullptr));
         initscr();
@@ -53,7 +56,11 @@ public:
     }
 
     void run() {
-        gameLoop();
+        while (userInput != QUIT && buffer.size() < LEN) {
+            checkSpawnTime();
+            draw();
+            handleInput();
+        }
     }
 
 private:
@@ -73,14 +80,6 @@ private:
         printw("Space to remove the first occurrence of the selected number.\n");
         printw("'%c' to increase, '%c' to decrease, '%c' to quit.\n", INCREASE, DECREASE, QUIT);
         refresh();
-    }
-
-    void gameLoop() {
-        while (userInput != QUIT && buffer.size() < LEN) {
-            checkSpawnTime();
-            draw();
-            handleInput();
-        }
     }
 
     void checkSpawnTime() {
