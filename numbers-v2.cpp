@@ -41,7 +41,11 @@ public:
     }
 
     void run() {
-        gameLoop();
+        while (userInput != QUIT && buffer.size() < LEN) {
+            maybeAddNumber();
+            draw();
+            handleInput();
+        }
     }
 
 private:
@@ -61,14 +65,6 @@ private:
         printw("Space to remove the first occurrence of the selected number.\n");
         printw("'%c' to increase, '%c' to decrease, '%c' to quit.\n", INCREASE, DECREASE, QUIT);
         refresh();
-    }
-
-    void gameLoop() {
-        while (userInput != QUIT && buffer.size() < LEN) {
-            maybeAddNumber();
-            draw();
-            handleInput();
-        }
     }
 
     void maybeAddNumber() {
