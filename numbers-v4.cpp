@@ -65,7 +65,7 @@ public:
 
 private:
     void draw() const {
-        clear();
+        move(0,0); 
         printw("Score: %d\n", score);
         printw(std::string(LEN + 1, '-').c_str());
         printw("\n");
@@ -115,19 +115,15 @@ private:
                 currentNumber = (currentNumber == 0) ? 9 : currentNumber - 1;
                 break;
             case KILL:
-                removeFirstOccurrence();
+                auto it = std::find(buffer.begin(), buffer.end(), currentNumber);
+                if (it != buffer.end()) {
+                   buffer.erase(it);
+                   score++;
+                   updateSpawnRate(); // Update difficulty when scoring
+                }
                 break;
             default:
                 break;
-        }
-    }
-
-    void removeFirstOccurrence() {
-        auto it = std::find(buffer.begin(), buffer.end(), currentNumber);
-        if (it != buffer.end()) {
-            buffer.erase(it);
-            score++;
-            updateSpawnRate(); // Update difficulty when scoring
         }
     }
 };
